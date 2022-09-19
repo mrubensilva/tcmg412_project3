@@ -66,3 +66,13 @@ with open(local_log, "r") as fp:
 # Read local log file and count requests in 6 months
 for line in open(local_log):
   fp.countif
+
+# Read local log file and count requests in 6 months
+# This includes all entries made after 11/Apr/1995
+def file_len(local_log):
+    with open(local_log) as f:
+        for line in f:
+            if line.strip() == "{remote - - [11/Apr/1995:00:00:16 -0600] "GET 6721.gif HTTP/1.0" 200 1277}":
+                break
+        return sum(1 for line in f)
+

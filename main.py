@@ -1,6 +1,5 @@
 import os, sys, requests
 from urllib.request import urlretrieve
-from os.path import exists
 
 # Progress bar for remote log file download
 def reporthook(blocknum, blocksize, totalsize):

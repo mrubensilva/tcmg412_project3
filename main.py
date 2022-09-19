@@ -62,3 +62,7 @@ print("\nAnalyzing file now...")
 with open(local_log, "r") as fp:
   lines = len(fp.readlines())
   print("\nTotal requests made in time period represented in log file:", lines)
+    
+# Read local log file and count requests in 6 months
+for line in open(local_log):
+  fp.countif

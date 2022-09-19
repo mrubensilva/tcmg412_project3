@@ -1,17 +1,15 @@
-import os, sys, urllib, requests, filecmp
+import os, sys, requests
 from urllib.request import urlretrieve
 
 # Prompt user for link to log file
-remote_log = "https://s3.amazonaws.com/tcmg476/http_access_log').headers['content-length"
-## remote_log = input("Enter the URL for remote copy of log: ")
+remote_log = input("Enter the URL for remote copy of log: ")
 # Prompt user for name of local file copy 
-local_log = "local_copy.log"
-## local_log = input("Choose name for local copy of log: ")
+local_log = input("Choose name for local copy of log: ")
 
 # Fetch size of remote log file and output
-remote_log_size = float(requests.head('https://s3.amazonaws.com/tcmg476/http_access_log').headers['content-length'])
+remote_log_size = float(requests.head("https://s3.amazonaws.com/tcmg476/http_access_log").headers["content-length"])
 
-print("Size of remote log file: ", remote_log_size)
+print("\nSize of remote log file: ", remote_log_size)
 
 # Fetch size of local log copy and output
 local_log_size = float(os.path.getsize(local_log))
@@ -43,7 +41,10 @@ def need_download():
 
 need_download()
 
+# Update user that fetching step is complete
+print("Analyzing file now...")
+
 # Read local log file and count lines to output total requests
-with open(local_log, 'r') as fp:
+with open(local_log, "r") as fp:
   lines = len(fp.readlines())
-  print("\nTotal requests made in the time period represented in the log file:", lines)
+  print("\nTotal requests made in time period represented in log file:", lines)

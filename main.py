@@ -2,9 +2,11 @@ import os, sys, urllib, requests, filecmp
 from urllib.request import urlretrieve
 
 # Prompt user for link to log file
-remote_log = input("Enter the URL for remote copy of log: ")
+remote_log = "https://s3.amazonaws.com/tcmg476/http_access_log').headers['content-length"
+## remote_log = input("Enter the URL for remote copy of log: ")
 # Prompt user for name of local file copy 
-local_log = input("Choose name for local copy of log: ")
+local_log = "local_copy.log"
+## local_log = input("Choose name for local copy of log: ")
 
 # Fetch size of remote log file and output
 remote_log_size = float(requests.head('https://s3.amazonaws.com/tcmg476/http_access_log').headers['content-length'])
@@ -37,6 +39,11 @@ def need_download():
     print("File size mismatch, downloading remote log file...")
     urlretrieve(remote_log, local_log, reporthook)
   else:
-    print("File size match, skipping remote log download...")
+    print("\nFile size match, skipping remote log download...")
 
 need_download()
+
+# Read local log file and count lines to output total requests
+with open(local_log, 'r') as fp:
+  lines = len(fp.readlines())
+  print("\nTotal requests made in the time period represented in the log file:", lines)

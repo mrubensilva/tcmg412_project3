@@ -56,7 +56,7 @@ need_update()
 
 
 # Update user that fetching step is complete
-print("\nAnalyzing file now...")
+print("\nInspecting file now...")
 
 # Read local log file and count lines to output total requests
 with open(local_log, "r") as fp:

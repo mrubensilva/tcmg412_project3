@@ -1,6 +1,7 @@
 import os, sys, requests
 from urllib.request import urlretrieve
 
+
 # Progress bar for remote log file download
 def reporthook(blocknum, blocksize, totalsize):
     readsofar = blocknum * blocksize
@@ -62,7 +63,7 @@ print("\nInspecting file now...")
 with open(local_log, "r") as fp:
   lines = len(fp.readlines())
   print("\nTotal requests made in time period represented in log file:", lines)
- fp.close
+fp.close
 
 totalLogsSix = 0 #initialize counter for the six months
 f = open(local_log, "r")
@@ -110,4 +111,3 @@ f.close
 #             if line.strip() == "{remote - - [11/Apr/1995:00:00:16 -0600] "GET 6721.gif HTTP/1.0" 200 1277}":
 #                 break
 #         return sum(1 for line in f)
-

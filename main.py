@@ -1,7 +1,6 @@
 import os, sys, requests
 from urllib.request import urlretrieve
 
-
 # Progress bar for remote log file download
 def reporthook(blocknum, blocksize, totalsize):
     readsofar = blocknum * blocksize
@@ -30,7 +29,6 @@ def need_download():
     urlretrieve(remote_log, local_log, reporthook)
   else:
     print("\nA file with that name already exists! Checking local copy...")
-
 need_download()
     
 # Fetch size of remote log file and output
@@ -52,9 +50,7 @@ def need_update():
     urlretrieve(remote_log, local_log, reporthook)
   else:
     print("\nFile size match! Skipping remote log file download...")
-
 need_update()
-
 
 # Update user that fetching step is complete
 print("\nInspecting file now...")
@@ -82,7 +78,6 @@ if f.mode == 'r':
           elif temp_date[3:6] == 'Oct': #if it is october we check if it is the 11th or before
             if int(temp_date[0:2]) <= 11:
                 totalLogsSix = totalLogsSix + 1
-
       #the same as above but if line starts with remote
       if (x[0] == 'r') and (x[11] == '[') :
         temp_date =  x[12:23]
@@ -98,16 +93,3 @@ if f.mode == 'r':
 
 print("The total logs from the last 6 months are", totalLogsSix)            
 f.close
-
-# Read local log file and count requests in 6 months
-# for line in open(local_log):
-#   fp.countif
-
-# Read local log file and count requests in 6 months
-# This includes all entries made after 11/Apr/1995
-# def file_len(local_log):
-#     with open(local_log) as f:
-#         for line in f:
-#             if line.strip() == "{remote - - [11/Apr/1995:00:00:16 -0600] "GET 6721.gif HTTP/1.0" 200 1277}":
-#                 break
-#         return sum(1 for line in f)

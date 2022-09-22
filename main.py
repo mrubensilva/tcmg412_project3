@@ -68,7 +68,7 @@ if f.mode == 'r':
     for x in fl:
       if (x[0] == 'l') and (x[10] == '[') : #if the line starts with l then it is a different format than rtemote
         temp_date =  x[11:22] #we dissect these elements since we only want to see day month and year
-        if temp_date[7:] == '1995': #looking for th eyear 1995 only filter
+        if temp_date[7:] == '1995': #looking for the year 1995 only filter
           if temp_date[3:6] == 'Jun' or temp_date[3:6] == 'Jul' or temp_date[3:6] == 'Aug' or temp_date[3:6] == 'Sep' or temp_date[3:6] == 'May': #if the month is from May-Sept it auto qualifies
             totalLogsSix = totalLogsSix + 1
           elif temp_date[3:6] == 'Apr': #if it is april we need to check if it is the 11th and after
@@ -91,5 +91,8 @@ if f.mode == 'r':
             if int(temp_date[0:2]) <= 11:
                 totalLogsSix = totalLogsSix + 1
 
-print("The total logs from the last 6 months are", totalLogsSix)            
+print("The total logs from the last 6 months are", totalLogsSix)    
+#What percentage of the requests were not successful (any 4xx status code)?
+
+
 f.close

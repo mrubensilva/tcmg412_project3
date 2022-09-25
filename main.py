@@ -93,6 +93,11 @@ if f.mode == 'r':
 
 print("The total logs from the last 6 months are", totalLogsSix)    
 #What percentage of the requests were not successful (any 4xx status code)?
+file = local_log
+    #read content of file to string
+        data = file.read()
+        #get number of occurrences of the substring in the string
+            occurrences = data.count("local 4")
 
-
+print('Number of occurrences of the 400 errors :', occurrences)
 f.close

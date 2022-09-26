@@ -97,7 +97,7 @@ file = open(local_log, "r")
 #read content of file to string
 data = file.read()
 #get number of occurrences of the substring in the string
-occurrences = data.count("local 4")
+occurrences = data.count('1.0" 4')
 
 print('Number of occurrences of the 400 errors :', occurrences)
 f.close

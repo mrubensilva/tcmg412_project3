@@ -58,7 +58,8 @@ print("\nInspecting file now...")
 # Read local log file and count lines to output total requests
 with open(local_log, "r") as fp:
   lines = len(fp.readlines())
-  print("\nTotal requests made in time period represented in log file:", lines)
+  print("")
+  print(str(lines) + " total requests in log file.")
 fp.close
 
 totalLogsSix = 0 #initialize counter for the six months
@@ -91,7 +92,9 @@ if f.mode == 'r':
             if int(temp_date[0:2]) <= 11:
                 totalLogsSix = totalLogsSix + 1
 
-print("The total logs from the last 6 months are", totalLogsSix)    
+print("")
+print(str(totalLogsSix) + " requests in the last 6 months.")
+
 #What percentage of the requests were not successful (any 4xx status code)?
 file = open(local_log, "r")
 #read content of file to string

@@ -96,8 +96,22 @@ print("The total logs from the last 6 months are", totalLogsSix)
 file = open(local_log, "r")
 #read content of file to string
 data = file.read()
-#get number of occurrences of the substring in the string
-occurrences = data.count('1.0" 4')
+#get number of error 3xx occurrences
+occurrences_3 = data.count('1.0" 3')
+#get percentage of error 3xx occurrences
+occurrences_3_percent = int((occurrences_3 / lines) * 100)
+#print percentage of error 3xx occurrences
+print("")
+print(str(occurrences_3_percent) + "% of requests were redirected elsewhere (Error 3xx).")
 
-print('Number of occurrences of the 400 errors :', occurrences)
+#get number of error 3xx
+occurrences_4 = data.count('1.0" 4')
+#get percentage of error 4xx occurrences
+occurrences_4_percent = int((occurrences_4 / lines) * 100)
+#print percentage of error 4xx occurrences
+print("")
+print(str(occurrences_4_percent) + "% of requests were unsuccessful (Error 4xx).")
+
+# print('Number of 3xx error occurrences:', occurrences_3)
+# print('Number of 4xx error occurrences:', occurrences_4)
 f.close

@@ -1,4 +1,4 @@
-import os, sys, requests, pip._vendor.requests
+import os, sys, pip._vendor.requests
 from urllib.request import urlretrieve
 
 # Progress bar for remote log file download

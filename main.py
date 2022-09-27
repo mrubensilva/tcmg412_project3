@@ -1,4 +1,4 @@
-import os, sys, requests
+import os, sys, requests, pip._vendor.requests
 from urllib.request import urlretrieve
 
 # Progress bar for remote log file download
@@ -17,7 +17,13 @@ def reporthook(blocknum, blocksize, totalsize):
 # Prompt user for link to remote log file
 remote_log = input("Enter the URL for remote copy of log: ")
 # Prompt user for name of local log file 
-local_log = input("Choose name for local file copy of log: ")
+local_log = input("\nChoose name for local file copy of log: ")
+
+response = pip._vendor.requests.get(remote_log)
+open(local_log, "wb").write(response.content)
+
+totalDayLogs = 0 #initialize counter for the day months
+tempDay = input('\nAnalyze the number of requests on a given day? Enter a date using the format "DD/Mon/YYYY." Or, enter "skip" to skip this step: ')
 
 # Check if local log file exists with name user provides to local_log
 file_exists = os.path.exists(local_log)
@@ -32,7 +38,7 @@ def need_download():
 need_download()
     
 # Fetch size of remote log file and output
-remote_log_size = float(requests.head("https://s3.amazonaws.com/tcmg476/http_access_log").headers["content-length"])
+remote_log_size = float(requests.head(remote_log).headers["content-length"])
 
 print("\nSize of remote log file: ", remote_log_size)
 
@@ -97,6 +103,25 @@ if f.mode == 'r':
 
 print("")
 print(str(totalLogsSix) + " requests in the last 6 months.")
+
+if(tempDay != "skip"):
+  f = open(local_log, "r")
+  if f.mode == 'r':
+      fl = f.readlines()
+      for x in fl:
+        if (x[0] == 'l') and (x[10] == '[') : #if the line starts with l then it is a different format than remote
+          temp_date =  x[11:22] #we dissect these elements since we only want to see day month and year
+          if temp_date == tempDay: #comparing the current day with the day chosen
+            totalDayLogs = totalDayLogs + 1
+  
+        #the same as above but if line starts with remote
+        if (x[0] == 'r') and (x[11] == '[') :
+          temp_date =  x[12:23]
+          if temp_date == tempDay: #comparing the current day with the day chosen
+              totalDayLogs = totalDayLogs + 1
+  f.close
+  print("")
+  print(str(totalDayLogs) + " requests made on "+ str(tempDay) + ".")
 
 #What percentage of the requests were not successful (any 4xx status code)?
 file = open(local_log, "r")

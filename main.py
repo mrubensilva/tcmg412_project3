@@ -22,7 +22,6 @@ local_log = input("\nChoose name for local file copy of log: ")
 response = pip._vendor.requests.get(remote_log)
 open(local_log, "wb").write(response.content)
 
-totalDayLogs = 0 #initialize counter for the day months
 tempDay = input('\nAnalyze the number of requests on a given day? Enter a date using the format "DD/Mon/YYYY." Or, enter "skip" to skip this step: ')
 
 # Check if local log file exists with name user provides to local_log
@@ -105,6 +104,7 @@ print("")
 print(str(totalLogsSix) + " requests in the last 6 months.")
 
 if(tempDay != "skip"):
+  totalDayLogs = 0 #initialize counter for the day months
   f = open(local_log, "r")
   if f.mode == 'r':
       fl = f.readlines()

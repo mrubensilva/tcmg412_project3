@@ -103,6 +103,7 @@ if f.mode == 'r':
 print("")
 print(str(totalLogsSix) + " requests in the last 6 months.")
 
+# How many requests were made on each day? 
 if(tempDay != "skip"):
   totalDayLogs = 0 #initialize counter for the day months
   f = open(local_log, "r")
@@ -142,9 +143,6 @@ occurrences_4_percent = int((occurrences_4 / lines) * 100)
 #print percentage of error 4xx occurrences
 print("")
 print(str(occurrences_4_percent) + "% of requests were unsuccessful (Error 4xx).")
-
-# print('Number of 3xx error occurrences:', occurrences_3)
-# print('Number of 4xx error occurrences:', occurrences_4)
 f.close
 
 dates = []

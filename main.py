@@ -1,4 +1,5 @@
 import os, sys, pip._vendor.requests
+from urllib import request
 from urllib.request import urlretrieve
 
 # Progress bar for remote log file download
@@ -37,7 +38,7 @@ def need_download():
 need_download()
     
 # Fetch size of remote log file and output
-remote_log_size = float(requests.head(remote_log).headers["content-length"])
+remote_log_size = float(pip._vendor.requests.head(remote_log).headers["content-length"])
 
 print("\nSize of remote log file: ", remote_log_size)
 
